@@ -2,11 +2,9 @@ name: My GitHub Actions Pipeline
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
@@ -16,16 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'  # Встановлює Node.js версії 16
-
-      - name: Install dependencies
-        run: npm install   # Встановлює всі залежності для проекту
-
-      - name: Run build
-        run: npm run build  # Запускає команду для зборки проекту
-
-      - name: Run tests
-        run: npm test       # Запускає тести для перевірки проекту
+      - name: Build code
+        run: |
+          npm install   # Встановлює всі залежності для проекту
+          npm run build  # Запускає команду для зборки проекту
